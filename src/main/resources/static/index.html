@@ -19,7 +19,9 @@
                 <button onclick="connectToChat()">Join</button>
             </div>
             <div id="chat-room" style="display: none;">
-                <div id="message-container"></div>
+                <div id="chat-messages">
+                    <div id="message-container"></div>
+                </div>
                 <form id="message-form" onsubmit="sendMessage(event)">
                     <input type="text" id="message-input" placeholder="Type a message..." required />
                     <button type="submit">Send</button>

@@ -89,7 +89,15 @@ body {
 #message-container {
     flex: 1;
     padding: 10px;
-    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+    height: calc(100vh - 150px); /* Adjust height to fit within the viewport */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+#chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto; /* Enable vertical scrolling */
     border-bottom: 1px solid #ddd;
 }
 
