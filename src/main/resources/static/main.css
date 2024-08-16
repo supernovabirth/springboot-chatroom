@@ -1,0 +1,172 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#navbar {
+    background-color:rgb(29, 155, 240);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+    position: relative;
+}
+
+#hamburger-menu {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#main-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+#chat-container {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    overflow: hidden;
+}
+
+#sidebar {
+    flex: 1;
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#name-form {
+    padding: 20px;
+    text-align: center;
+}
+
+#name-form input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+#name-form button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color:rgb(29, 155, 240);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#name-form button:hover {
+    background-color: #0056b3;
+}
+
+#chat-room {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#message-container {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#message-form {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    position: sticky;
+    bottom: 0;
+}
+
+#message-form input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+#message-form button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color:rgb(29, 155, 240);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#message-form button:hover {
+    background-color: #0056b3;
+}
+
+.username {
+    margin-right: 5px;
+}
+
+#sidebar .close-btn {
+    display: none;
+}
+
+/* Media Queries for Mobile and Tablet */
+@media (max-width: 768px) {
+    #sidebar {
+        display: none;
+    }
+
+    #hamburger-menu {
+        display: block;
+    }
+
+    #sidebar.active {
+        display: block;
+        position: fixed;
+        right: 0;
+        width: 85%;
+        height: 85%;
+        background-color: #f8f9fa;
+        z-index: 1000;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #sidebar .close-btn {
+        display: block;
+        text-align: right;
+        font-size: 24px;
+        cursor: pointer;
+    }
+}

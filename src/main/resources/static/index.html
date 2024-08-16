@@ -1,50 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>WebSocket Chat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatroom</title>
+    <link href="/main.css" rel="stylesheet">
 </head>
 <body>
-    <div id="chat">
-        <input type="text" id="name" placeholder="Enter your name" />
-        <button onclick="connect()">Connect</button>
-        <div id="conversation"></div>
-        <input type="text" id="message" placeholder="Enter message" />
-        <button onclick="sendMessage()">Send</button>
+    <div id="navbar">
+        X Chatroom
+        <span id="hamburger-menu" onclick="toggleSidebar()">☰</span>
+    </div>
+    <div id="main-content">
+        <div id="chat-container">
+            <div id="name-form">
+                <h2>Enter your name to join the chatroom</h2>
+                <input type="text" id="name-input" placeholder="Your name" />
+                <button onclick="connectToChat()">Join</button>
+            </div>
+            <div id="chat-room" style="display: none;">
+                <div id="message-container"></div>
+                <form id="message-form" onsubmit="sendMessage(event)">
+                    <input type="text" id="message-input" placeholder="Type a message..." required />
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+        <div id="sidebar">
+            <span class="close-btn" onclick="toggleSidebar()">✖</span>
+            <h3>Saved Chats</h3>
+            <p>Saved chats appear here.</p>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
-    <script>
-        var stompClient = null;
-
-        function connect() {
-            var socket = new SockJS('/chat');
-            stompClient = Stomp.over(socket);
-            stompClient.connect({}, function (frame) {
-                console.log('Connected: ' + frame);
-                stompClient.subscribe('/topic/public', function (messageOutput) {
-                    showMessageOutput(JSON.parse(messageOutput.body));
-                });
-                stompClient.send("/app/chat.addUser",
-                    {},
-                    JSON.stringify({sender: document.getElementById("name").value, type: 'JOIN'})
-                )
-            });
-        }
-
-        function sendMessage() {
-            stompClient.send("/app/chat.sendMessage", {},
-                JSON.stringify({'content': document.getElementById("message").value, 'sender': document.getElementById("name").value})
-            );
-        }
-
-        function showMessageOutput(messageOutput) {
-            var response = document.getElementById('conversation');
-            var p = document.createElement('p');
-            p.style.wordWrap = 'break-word';
-            p.appendChild(document.createTextNode(messageOutput.sender + ": " + messageOutput.content));
-            response.appendChild(p);
-        }
-    </script>
+	<script src="/app.js"></script>
 </body>
 </html>
