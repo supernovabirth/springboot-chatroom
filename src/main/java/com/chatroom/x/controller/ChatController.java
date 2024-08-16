@@ -8,12 +8,22 @@ import org.springframework.stereotype.Controller;
 
 import com.chatroom.x.model.ChatMessage;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+
 @Controller
 public class ChatController {
+	
+	private final Counter messageCounter;
+
+    public ChatController(MeterRegistry meterRegistry) {
+        this.messageCounter = meterRegistry.counter("chat.messages.sent");
+    }
 
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+    	messageCounter.increment();
         return chatMessage;
     }
 

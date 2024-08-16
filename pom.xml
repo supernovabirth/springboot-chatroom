@@ -43,7 +43,24 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
-		</dependency>		
+		</dependency>
+	    <!-- Micrometer Core -->
+	    <dependency>
+	        <groupId>io.micrometer</groupId>
+	        <artifactId>micrometer-core</artifactId>
+	    </dependency>
+	
+	    <!-- Micrometer for Datadog -->
+	    <dependency>
+	        <groupId>io.micrometer</groupId>
+	        <artifactId>micrometer-registry-datadog</artifactId>
+	    </dependency>
+	
+	    <!-- Spring Boot Actuator -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-actuator</artifactId>
+	    </dependency>	
 	</dependencies>
 
 	<build>
