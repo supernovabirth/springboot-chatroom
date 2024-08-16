@@ -1,50 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>WebSocket Chat</title>
+    <title>Demo Chatroom</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-    <div id="chat">
-        <input type="text" id="name" placeholder="Enter your name" />
-        <button onclick="connect()">Connect</button>
-        <div id="conversation"></div>
-        <input type="text" id="message" placeholder="Enter message" />
+    <div id="chatroom">
+        <h1>Chatroom</h1>
+        <div id="messages"></div>
+        <input type="text" id="message-input" placeholder="Type a message...">
         <button onclick="sendMessage()">Send</button>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
-    <script>
-        var stompClient = null;
-
-        function connect() {
-            var socket = new SockJS('/chat');
-            stompClient = Stomp.over(socket);
-            stompClient.connect({}, function (frame) {
-                console.log('Connected: ' + frame);
-                stompClient.subscribe('/topic/public', function (messageOutput) {
-                    showMessageOutput(JSON.parse(messageOutput.body));
-                });
-                stompClient.send("/app/chat.addUser",
-                    {},
-                    JSON.stringify({sender: document.getElementById("name").value, type: 'JOIN'})
-                )
-            });
-        }
-
-        function sendMessage() {
-            stompClient.send("/app/chat.sendMessage", {},
-                JSON.stringify({'content': document.getElementById("message").value, 'sender': document.getElementById("name").value})
-            );
-        }
-
-        function showMessageOutput(messageOutput) {
-            var response = document.getElementById('conversation');
-            var p = document.createElement('p');
-            p.style.wordWrap = 'break-word';
-            p.appendChild(document.createTextNode(messageOutput.sender + ": " + messageOutput.content));
-            response.appendChild(p);
-        }
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>

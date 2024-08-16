@@ -1,0 +1,21 @@
+#chatroom {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+#messages {
+    border: 1px solid #ccc;
+    height: 300px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
+#message-input {
+    width: 80%;
+    padding: 10px;
+}
+
+button {
+    padding: 10px;
+}
